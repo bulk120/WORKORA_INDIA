@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workora India Private Limited - Job Consultancy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+
+        body {
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e68a09;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 16px;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+        }
+
+        nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - 140px);
+        }
+
+        /* Page Specific Styles */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .page-content {
+            padding: 40px 0 80px;
+        }
+
+        /* Home Page */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.9)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card i {
+            font-size: 48px;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary);
+            margin-right: 15px;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Privacy & Terms Pages */
+        .policy-content, .terms-content {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .policy-content h2, .terms-content h2 {
+            color: var(--primary);
+            margin: 30px 0 15px;
+            font-size: 28px;
+        }
+
+        .policy-content h2:first-child, .terms-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .policy-content p, .terms-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .policy-content ul, .terms-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .policy-content li, .terms-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-col p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0 0 15px 0;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .policy-content, .terms-content, .contact-info, .contact-form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .page-header {
+                padding: 60px 0 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">WORKORA<span>INDIA</span></a>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content - Dynamically loaded -->
+    <main id="mainContent">
+        <!-- Home page content loaded by default -->
+        <section class="hero">
+            <div class="container">
+                <h1>Your Career Success Partner</h1>
+                <p>Workora India Private Limited specializes in connecting talented professionals with the right opportunities. With our expert consultancy services, we help both job seekers and employers achieve their goals.</p>
+                <a href="contact.html" class="btn">Get In Touch</a>
+            </div>
+        </section>
+        
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Consultancy Services</h2>
+                    <p>We provide comprehensive job consultancy services tailored to meet the needs of today's dynamic job market.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Career Counseling</h3>
+                        <p>Personalized career guidance to help you identify the right career path based on your skills and aspirations.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Resume Building</h3>
+                        <p>Professional resume creation and optimization to increase your chances of getting noticed by employers.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Job Placement</h3>
+                        <p>Connecting qualified candidates with top employers across various industries and sectors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Workora India</h3>
+                    <p>Workora India Private Limited is a premier job consultancy firm dedicated to helping professionals and employers connect for mutual success.</p>
+                    <p>Nature of Business: Consultancy for jobs</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <p><strong>Mobile:</strong> 7977576761</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p><strong>Email:</strong> pritam@workoraindia.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <div>
+                            <p><strong>Company:</strong> WORKORA INDIA PRIVATE LIMITED</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Workora India Private Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for SPA functionality and mobile menu -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+                mobileToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+        
+        // Simple SPA functionality to load pages without refresh
+        document.addEventListener('DOMContentLoaded', function() {
+            // Store the page content
+            const pages = {
+                'index.html': document.getElementById('mainContent').innerHTML,
+                'contact.html': `
+                    <div class="page-header">
+                        <div class="container">
+                            <h1>Contact Us</h1>
+                            <p>Get in touch with our team for career guidance and placement opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="page-content">
+                        <div class="container">
+                            <div class="contact-container">
+                                <div class="contact-info">
+                                    <h2>Get In Touch</h2>
+                                    <p>Reach out to us for any queries related to job placements, career counseling, or partnership opportunities. Our team is here to help you navigate your career journey.</p>
+                                    
+                                    <div class="contact-details">
+                                        <div class="contact-item">
+                                            <i class="fas fa-phone"></i>
+                                            <div>
+                                                <h4>Phone Number</h4>
+                                                <p>7977576761</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="contact-item">
+                                            <i class="fas fa-envelope"></i>
+                                            <div>
+                                                <h4>Email Address</h4>
+                                                <p>pritam@workoraindia.com</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="contact-item">
+                                            <i class="fas fa-building"></i>
+                                            <div>
+                                                <h4>Company Name</h4>
+                                                <p>WORKORA INDIA PRIVATE LIMITED</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="contact-item">
+                                            <i class="fas fa-briefcase"></i>
+                                            <div>
+                                                <h4>Nature of Business</h4>
+                                                <p>Consultancy for jobs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-form">
+                                    <h2>Send Message</h2>
+                                    <form id="contactForm">
+                                        <div class="form-group">
+                                            <label for="name">Full Name</label>
+                                            <input type="text" id="name" class="form-control" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="email">Email Address</label>
+                                            <input type="email" id="email" class="form-control" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="phone">Phone Number</label>
+                                            <input type="tel" id="phone" class="form-control">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="subject">Subject</label>
+                                            <input type="text" id="subject" class="form-control" required>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="message">Message</label>
+                                            <textarea id="message" class="form-control" required></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn">Send Message</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                'privacy.html': `
+                    <div class="page-header">
+                        <div class="container">
+                            <h1>Privacy Policy</h1>
+                            <p>How we collect, use, and protect your personal information</p>
+                        </div>
+                    </div>
+                    
+                    <div class="page-content">
+                        <div class="container">
+                            <div class="policy-content">
+                                <h2>Privacy Policy for Workora India Private Limited</h2>
+                                <p>This Privacy Policy describes how Workora India Private Limited ("we", "us", or "our") collects, uses, and shares your personal information when you use our job consultancy services.</p>
+                                
+                                <h2>Information We Collect</h2>
+                                <p>We collect information that you provide directly to us, including:</p>
+                                <ul>
+                                    <li>Name, email address, phone number, and other contact details</li>
+                                    <li>Resume/CV, employment history, educational background</li>
+                                    <li>Job preferences, career goals, and skills assessment</li>
+                                    <li>Any other information you choose to provide during consultations</li>
+                                </ul>
+                                
+                                <h2>How We Use Your Information</h2>
+                                <p>We use the information we collect to:</p>
+                                <ul>
+                                    <li>Provide job consultancy and placement services</li>
+                                    <li>Match your profile with potential employers</li>
+                                    <li>Communicate with you about job opportunities</li>
+                                    <li>Improve our services and develop new features</li>
+                                    <li>Comply with legal obligations</li>
+                                </ul>
+                                
+                                <h2>Information Sharing</h2>
+                                <p>We may share your information with:</p>
+                                <ul>
+                                    <li>Potential employers for job opportunities that match your profile</li>
+                                    <li>Service providers who assist in our operations</li>
+                                    <li>Legal authorities when required by law</li>
+                                </ul>
+                                <p>We do not sell your personal information to third parties.</p>
+                                
+                                <h2>Data Security</h2>
+                                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                                
+                                <h2>Contact Us</h2>
+                                <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                                <p><strong>Email:</strong> pritam@workoraindia.com</p>
+                                <p><strong>Phone:</strong> 7977576761</p>
+                                <p><strong>Last Updated:</strong> October 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                'terms.html': `
+                    <div class="page-header">
+                        <div class="container">
+                            <h1>Terms & Conditions</h1>
+                            <p>Terms governing the use of our services</p>
+                        </div>
+                    </div>
+                    
+                    <div class="page-content">
+                        <div class="container">
+                            <div class="terms-content">
+                                <h2>Terms and Conditions for Workora India Private Limited</h2>
+                                <p>Welcome to Workora India Private Limited. These terms and conditions outline the rules and regulations for the use of our job consultancy services.</p>
+                                
+                                <h2>Services Provided</h2>
+                                <p>Workora India Private Limited provides job consultancy services including career counseling, resume building, interview preparation, and job placement assistance.</p>
+                                
+                                <h2>Eligibility</h2>
+                                <p>By using our services, you represent that you are at least 18 years of age and have the legal capacity to enter into a binding agreement.</p>
+                                
+                                <h2>Client Responsibilities</h2>
+                                <p>As a client, you agree to:</p>
+                                <ul>
+                                    <li>Provide accurate and complete information about your qualifications, experience, and employment history</li>
+                                    <li>Notify us of any changes to your contact information or employment status</li>
+                                    <li>Be professional and respectful in all interactions with our team and potential employers</li>
+                                    <li>Inform us immediately if you secure employment through other means</li>
+                                </ul>
+                                
+                                <h2>Fees and Payments</h2>
+                                <p>Our fee structure will be communicated to you before the commencement of services. Some services may be offered free of charge, while others may require payment as agreed upon.</p>
+                                
+                                <h2>Confidentiality</h2>
+                                <p>We will maintain the confidentiality of your personal information and will only share it with potential employers with your consent.</p>
+                                
+                                <h2>Limitation of Liability</h2>
+                                <p>Workora India Private Limited is not responsible for employment decisions made by employers. We do not guarantee job placement and are not liable for any employment outcomes.</p>
+                                
+                                <h2>Modification of Terms</h2>
+                                <p>We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms.</p>
+                                
+                                <h2>Contact Information</h2>
+                                <p>For any questions regarding these Terms and Conditions, please contact us:</p>
+                                <p><strong>Company:</strong> Workora India Private Limited</p>
+                                <p><strong>Email:</strong> pritam@workoraindia.com</p>
+                                <p><strong>Phone:</strong> 7977576761</p>
+                                <p><strong>Last Updated:</strong> October 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            };
+            
+            // Handle navigation between pages
+            document.querySelectorAll('nav a, .footer-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Only handle internal navigation
+                    if (href && pages.hasOwnProperty(href)) {
+                        e.preventDefault();
+                        
+                        // Update active link
+                        document.querySelectorAll('nav a').forEach(a => {
+                            a.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Update page content
+                        document.getElementById('mainContent').innerHTML = pages[href];
+                        
+                        // Update browser history
+                        history.pushState({page: href}, '', href);
+                        
+                        // Scroll to top
+                        window.scrollTo(0, 0);
+                        
+                        // Re-attach form submit event for contact page
+                        if (href === 'contact.html') {
+                            document.getElementById('contactForm')?.addEventListener('submit', handleFormSubmit);
+                        }
+                    }
+                });
+            });
+            
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function(e) {
+                const page = e.state?.page || 'index.html';
+                document.getElementById('mainContent').innerHTML = pages[page];
+                
+                // Update active link
+                document.querySelectorAll('nav a').forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href') === page) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+            
+            // Handle contact form submission
+            function handleFormSubmit(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                
+                // In a real application, you would send this data to a server
+                // For this demo, we'll just show an alert
+                alert(`Thank you ${name}! Your message "${subject}" has been received. We will contact you at ${email} shortly.`);
+                
+                // Reset form
+                e.target.reset();
+            }
+            
+            // Attach form submit event if on contact page
+            document.getElementById('contactForm')?.addEventListener('submit', handleFormSubmit);
+        });
+    </script>
+</body>
+</html>
